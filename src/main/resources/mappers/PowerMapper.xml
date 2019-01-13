@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.lc.dao.PowerMapper">
+  <resultMap id="BaseResultMap" type="com.nf.lc.entity.Power">
+    <id column="power_id" jdbcType="INTEGER" property="powerId" />
+    <result column="power_name" jdbcType="VARCHAR" property="powerName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from power
+    where power_id = #{powerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf.lc.entity.Power">
+    insert into power (power_id, power_name)
+    values (#{powerId,jdbcType=INTEGER}, #{powerName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf.lc.entity.Power">
+    update power
+    set power_name = #{powerName,jdbcType=VARCHAR}
+    where power_id = #{powerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select power_id, power_name
+    from power
+    where power_id = #{powerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select power_id, power_name
+    from power
+  </select>
+</mapper>
